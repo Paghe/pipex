@@ -1,37 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 19:20:21 by apaghera          #+#    #+#             */
-/*   Updated: 2023/01/23 19:39:44 by apaghera         ###   ########.fr       */
+/*   Created: 2023/01/23 19:37:36 by apaghera          #+#    #+#             */
+/*   Updated: 2023/01/23 19:49:02 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "pipex.h"
 
-# include <stdio.h>
-# include "libft/libft.h"
-# include  <unistd.h>
-# include <fcntl.h>
-
-typedef struct s_input_data
+int	err_handle(void)
 {
-	int			argc;
-	char		**argv;
-	char		**envp;
-}				t_input_data;
-
-typedef struct s_data_object
-{
-	char		*input_file;
-	char		*output_file;
-}				t_data_object;
-
-t_input_data	create_input(int argc, char **argv, char **envp);
-int				err_handle(void);
-
-#endif
+	perror("error ");
+	exit(1);
+}

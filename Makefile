@@ -1,7 +1,9 @@
-FLAGS = -fsanitize=address -g #-Wall -Wextra -Werror
+FLAGS = -fsanitize=address -g -Wall -Wextra -Werror
 
 NAME = pipex
-SRC = main.c pipex_input.c\
+SRC = main.c \
+		pipex_input.c	\
+		error.c			\
 
 OBJ = $(SRC:.c=.o)
 LIBFT = ./libft/libft.a
