@@ -4,6 +4,7 @@ NAME = pipex
 SRC = main.c \
 		pipex_input.c	\
 		error.c			\
+		child.c			\
 
 OBJ = $(SRC:.c=.o)
 LIBFT = ./libft/libft.a
