@@ -5,7 +5,8 @@ SRC = main.c \
 		pipex_input.c	\
 		error.c			\
 		child.c			\
-
+		path.c 			\
+		
 OBJ = $(SRC:.c=.o)
 LIBFT = ./libft/libft.a
 all: $(NAME)

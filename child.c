@@ -6,7 +6,7 @@
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:54:54 by apaghera          #+#    #+#             */
-/*   Updated: 2023/01/26 13:36:02 by apaghera         ###   ########.fr       */
+/*   Updated: 2023/01/29 18:17:30 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define READ_END 0
 #define WRITE_END 1
 
-void	child1(int input_file_fd, int pipe0[2], t_input_data data)
+void	child1(int input_file_fd, int pipe0[2], t_input_data data, char *cmd)
 {
 	char	*cat_args[3];
 
@@ -28,10 +28,10 @@ void	child1(int input_file_fd, int pipe0[2], t_input_data data)
 	close(pipe0[READ_END]);
 	close(pipe0[WRITE_END]);
 	close(input_file_fd);
-	execve("/bin/cat", cat_args, data.envp);
+	execve(cmd, cat_args, data.envp);
 }
 
-void	child2(int output_file_fd, int pipe0[2], t_input_data data)
+void	child2(int output_file_fd, int pipe0[2], t_input_data data, char *cmd)
 {
 	char			*args[3];
 
@@ -44,5 +44,5 @@ void	child2(int output_file_fd, int pipe0[2], t_input_data data)
 	close(output_file_fd);
 	close(pipe0[WRITE_END]);
 	close(pipe0[READ_END]);
-	execve("/usr/bin/grep", args, data.envp);
+	execve(cmd, args, data.envp);
 }
