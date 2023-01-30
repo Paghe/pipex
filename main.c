@@ -6,7 +6,7 @@
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 17:27:56 by apaghera          #+#    #+#             */
-/*   Updated: 2023/01/29 18:17:01 by apaghera         ###   ########.fr       */
+/*   Updated: 2023/01/30 21:15:03 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,20 @@ int	main(int argc, char **argv, char **envp)
 	path = get_path(data.envp);
 	cmds = get_commands(path, ':');
 	pid = fork();
+	if (pid < 0)
+		return (1);
 	if (pid == 0)
 	{
 		cmd = exec_cmd(cmds, data.argv[2]);
 		child1(object.input_file, pipe0, data, cmd);
 	}
 	pid2 = fork();
+	if (pid2 < 0)
+		return (2);
 	if (pid2 == 0)
 	{
 		cmd = exec_cmd(cmds, data.argv[3]);
-		child2(object.output_file, pipe0, data, cmd);
+		child2(object.output_file, pipe0, data, cmd, ft_strrchr(data.argv[3], ' ') + 1);
 	}
 	close(pipe0[READ_END]);
 	close(pipe0[WRITE_END]);

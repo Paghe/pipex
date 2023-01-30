@@ -6,7 +6,8 @@ SRC = main.c \
 		error.c			\
 		child.c			\
 		path.c 			\
-		
+		parse.c			\
+
 OBJ = $(SRC:.c=.o)
 LIBFT = ./libft/libft.a
 all: $(NAME)
