@@ -6,7 +6,7 @@
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:54:54 by apaghera          #+#    #+#             */
-/*   Updated: 2023/01/30 21:15:16 by apaghera         ###   ########.fr       */
+/*   Updated: 2023/01/31 12:29:17 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define READ_END 0
 #define WRITE_END 1
 
-void	child1(int input_file_fd, int pipe0[2], t_input_data data, char *cmd)
+void	child1(int input_file_fd, int pipe0[2], t_input_data data, char *file)
 {
 	char	*cat_args[3];
 

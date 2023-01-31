@@ -6,7 +6,7 @@
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:14:10 by apaghera          #+#    #+#             */
-/*   Updated: 2023/01/30 21:15:22 by apaghera         ###   ########.fr       */
+/*   Updated: 2023/01/31 12:07:05 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,35 @@ char	*get_path(char **envp)
 	while (envp[i])
 	{
 		if (envp[i] == ft_strnstr(envp[i], "PATH", 4))
+		{
 			path = envp[i];
+			printf("path : %s\n", path);
+		}	
 		i++;
 	}	
 	return (path);
 }
 
-char	**get_commands(char *path, char split)
+char	**get_dir(char *path, char split)
 {
 	char	**cmd;
 	int		i;
 
 	cmd = ft_split(path + 5, split);
 	i = 0;
+	while (cmd[i])
+	{
+		printf("dir: %s\n", cmd[i]);
+		i++;
+	}	
 	return (cmd);
 }
 
-char	*exec_cmd(char **path, char *argv)
+char	*exec_file(char **path, char *argv)
 {
 	char	*tmp;
 	int		i;
-	char	*cmd;
+	char	*file;
 	int		j;
 
 	i = 0;
@@ -50,18 +58,29 @@ char	*exec_cmd(char **path, char *argv)
 	{
 		j = 0;
 		tmp = ft_strjoin(path[i], "/");
-		cmd = ft_strjoin(tmp, argv);
-		while (cmd[j] != ' ')
+		file = ft_strjoin(tmp, argv);
+		while (file[j] != ' ')
 			j++;
-		cmd[j] = '\0';
+		file[j] = '\0';
 		free(tmp);
-		printf("%s\n", "cmd");
-		if (access(cmd, 0) == 0)
+		if (access(file, 0) == 0)
 		{
-			printf("%s\n", cmd);
-			return (cmd);
+			printf("file: %s\n", file);
+			return (file);
 		}	
 		i++;
 	}
 	return (NULL);
+}
+
+char	*get_file(char **envp, char *argv)
+{
+	char	*path;
+	char	**dir;
+	char	*file;
+
+	path = get_path(envp);
+	dir = get_dir(path, ':');
+	file = exec_file(dir, argv);
+	return (file);
 }
