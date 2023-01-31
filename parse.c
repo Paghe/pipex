@@ -6,17 +6,25 @@
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 20:04:18 by apaghera          #+#    #+#             */
-/*   Updated: 2023/01/31 11:37:15 by apaghera         ###   ########.fr       */
+/*   Updated: 2023/01/31 15:15:53 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*get_args(char *argv)
+t_cmd	*get_args(t_cmd *cmd, t_input_data data)
 {
-	char	**s;
+	int				i;
+	int				j;
 
-	s = ft_split(argv, ' ');
-	printf("%s\n", *s);
-	return (*s);
+	j = 0;
+	i = 1;
+	cmd = (t_cmd *)malloc(sizeof(t_cmd) * data.argc - 3);
+	while (++i < data.argc)
+		cmd[j++].cmd = ft_split(data.argv[i], ' ');
+/* 	printf("%s\n", cmd[0].cmd[0]);
+	printf("%s\n", cmd[0].cmd[1]);
+	printf("%s\n", cmd[1].cmd[0]);
+	printf("%s\n", cmd[1].cmd[1]); */
+	return (cmd);
 }

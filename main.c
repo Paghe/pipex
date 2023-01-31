@@ -6,7 +6,7 @@
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 17:27:56 by apaghera          #+#    #+#             */
-/*   Updated: 2023/01/31 11:57:45 by apaghera         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:58:00 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,37 +19,37 @@ int	main(int argc, char **argv, char **envp)
 {
 	int				pipe0[2];
 	t_input_data	data;
-	pid_t			pid;
-	pid_t			pid2;
+	pid_t			pid[2];
 	t_data_object	object;
-	char			*file;
+	t_cmd			*cmd;
 
 	data = create_input(argc, argv, envp);
 	object = create_object();
+	cmd = get_args(cmd, data);
 	if (data.argc < 5)
 		err_handle();
 	if (pipe(pipe0) == -1)
 		err_handle();
-	pid = fork();
-	if (pid < 0)
+	pid[0] = fork();
+	if (pid[0] < 0)
 		return (1);
-	if (pid == 0)
+	if (pid[0] == 0)
 	{
-		file = get_file(data.envp, argv[2]);
-		child1(object.input_file, pipe0, data, file);
+		cmd -> file = get_file(data.envp, argv[2]);
+		child1(object.input_file, pipe0, data, cmd);
 	}
-	pid2 = fork();
-	if (pid2 < 0)
+	pid[1] = fork();
+	if (pid[1] < 0)
 		return (2);
-	if (pid2 == 0)
+	if (pid[1] == 0)
 	{
-		file = get_file(data.envp, data.argv[3]);
-		child2(object.output_file, pipe0, data, file, ft_strrchr(data.argv[3], ' ') + 1);
+		cmd -> file = get_file(data.envp, data.argv[3]);
+		child2(object.output_file, pipe0, data, cmd);
 	}
 	close(pipe0[READ_END]);
 	close(pipe0[WRITE_END]);
-	waitpid(pid, NULL, 0);
-	waitpid(pid2, NULL, 0);
+	waitpid(pid[0], NULL, 0);
+	waitpid(pid[1], NULL, 0);
 	return (0);
 }
 /* STDIN -> FIle1 -> cat -> [1] PIPE [0] < -- grep x --> FILE2 -> STDOUT

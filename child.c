@@ -6,7 +6,7 @@
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 11:54:54 by apaghera          #+#    #+#             */
-/*   Updated: 2023/01/31 12:29:17 by apaghera         ###   ########.fr       */
+/*   Updated: 2023/01/31 15:39:14 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 #define READ_END 0
 #define WRITE_END 1
 
-void	child1(int input_file_fd, int pipe0[2], t_input_data data, char *file)
+void	child1(int input_file_fd, int pipe0[2], t_input_data data, t_cmd *cmd)
 {
-	char	*cat_args[3];
+	char	**args;
 
-	cat_args[0] = cmd;
-	cat_args[1] = get_args(data.argv[2]);
-	cat_args[2] = NULL;
+	args = cmd[0].cmd;
 	input_file_fd = open(data.argv[1], O_RDONLY);
 	if (input_file_fd < 0)
 		return ;
@@ -30,16 +28,14 @@ void	child1(int input_file_fd, int pipe0[2], t_input_data data, char *file)
 	close(pipe0[READ_END]);
 	close(pipe0[WRITE_END]);
 	close(input_file_fd);
-	execve(cmd, cat_args, data.envp);
+	execve(cmd -> file, args, data.envp);
 }
 
-void	child2(int output_file_fd, int pipe0[2], t_input_data data, char *cmd, char *option)
+void	child2(int output_file_fd, int pipe0[2], t_input_data data, t_cmd *cmd)
 {
-	char			*args[3];
+	char			**args;
 
-	args[0] = cmd;
-	args[1] = option;
-	args[2] = NULL;
+	args = cmd[1].cmd;
 	output_file_fd = open(data.argv[data.argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (output_file_fd < 0)
 		return ;
@@ -48,5 +44,5 @@ void	child2(int output_file_fd, int pipe0[2], t_input_data data, char *cmd, char
 	close(output_file_fd);
 	close(pipe0[WRITE_END]);
 	close(pipe0[READ_END]);
-	execve(cmd, args, data.envp);
+	execve(cmd -> file, args, data.envp);
 }
