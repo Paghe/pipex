@@ -1,4 +1,4 @@
-FLAGS = #-fsanitize=address -g -Wall -Wextra -Werror
+FLAGS = -fsanitize=address -g -Wall -Wextra -Werror
 
 NAME = pipex
 SRC = main.c \
@@ -7,6 +7,7 @@ SRC = main.c \
 		 child.c			\
 		 path.c 			\
 		 parse.c			\
+		 free.c 			\
 
 OBJ = $(SRC:.c=.o)
 LIBFT = ./libft/libft.a

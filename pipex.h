@@ -6,7 +6,7 @@
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 19:20:21 by apaghera          #+#    #+#             */
-/*   Updated: 2023/01/31 14:57:18 by apaghera         ###   ########.fr       */
+/*   Updated: 2023/02/01 19:21:06 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include "libft/libft.h"
 # include  <unistd.h>
 # include <fcntl.h>
+
+# define ERR_CMD "Command not found\n"
 
 typedef struct s_input_data
 {
@@ -38,14 +40,18 @@ typedef struct s_cmd
 }			t_cmd;
 
 t_input_data	create_input(int argc, char **argv, char **envp);
+int				err_fork(void);
 int				err_handle(void);
-void			child1(int input_file_fd, int pipe0[2], t_input_data data, t_cmd *cmd);
-void			child2(int output_file, int pipe0[2], t_input_data data, t_cmd *cmd);
+int				child1(int input, int pipe0[2], t_input_data data, t_cmd *cmd);
+int				child2(int output, int pipe0[2], t_input_data data, t_cmd *cmd);
 t_data_object	create_object(void);
 char			*get_path(char **envp);
 char			**get_dir(char *path, char split);
 char			*exec_file(char **path, char *argv);
 t_cmd			*get_args(t_cmd *cmd, t_input_data data);
 char			*get_file(char **envp, char *argv);
+void			free_cmd(char **cmd);
+int				error_msg(char *msg);
+int				argv_error(char **argv);
 
 #endif

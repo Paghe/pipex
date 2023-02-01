@@ -6,7 +6,7 @@
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:14:10 by apaghera          #+#    #+#             */
-/*   Updated: 2023/01/31 15:18:17 by apaghera         ###   ########.fr       */
+/*   Updated: 2023/02/01 18:36:59 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ char	*exec_file(char **path, char *argv)
 		j = 0;
 		tmp = ft_strjoin(path[i], "/");
 		file = ft_strjoin(tmp, argv);
-		while (file[j] != ' ')
+		while (file[j])
 			j++;
 		file[j] = '\0';
 		free(tmp);
-		if (access(file, 0) == 0)
+		if (access(file, F_OK) == 0)
 			return (file);
 		i++;
 	}
@@ -66,6 +66,7 @@ char	*get_file(char **envp, char *argv)
 	char	**dir;
 	char	*file;
 
+	file = NULL;
 	path = get_path(envp);
 	dir = get_dir(path, ':');
 	file = exec_file(dir, argv);
