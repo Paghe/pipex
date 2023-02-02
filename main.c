@@ -6,7 +6,7 @@
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 17:27:56 by apaghera          #+#    #+#             */
-/*   Updated: 2023/02/01 19:55:25 by apaghera         ###   ########.fr       */
+/*   Updated: 2023/02/02 17:37:20 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	main(int argc, char **argv, char **envp)
 	t_data_object	object;
 	t_cmd			*cmd;
 	int				status;
-	int				value_status;
 
 	data = create_input(argc, argv, envp);
 	object = create_object();
@@ -52,19 +51,11 @@ int	main(int argc, char **argv, char **envp)
 	}
 	close(pipe0[READ_END]);
 	close(pipe0[WRITE_END]);
-	waitpid(pid[0], &status, 0);
+ 	waitpid(pid[0], &status, 0); 
 	waitpid(pid[1], &status, 0);
-	if (WIFEXITED(status))
-	{
-		value_status = WEXITSTATUS(status);
-		if (value_status == 0)
-			return (0);
-		else
-			return (value_status);
-	}
 	free_cmd(cmd[0].cmd);
 	free_cmd(cmd[1].cmd);
-	return (0);
+	exit(WEXITSTATUS(status));
 }
 /* STDIN -> FIle1 -> cat -> [1] PIPE [0] < -- grep x --> FILE2 -> STDOUT
 
