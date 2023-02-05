@@ -6,7 +6,7 @@
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 17:27:56 by apaghera          #+#    #+#             */
-/*   Updated: 2023/02/02 17:37:20 by apaghera         ###   ########.fr       */
+/*   Updated: 2023/02/05 16:28:45 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	main(int argc, char **argv, char **envp)
 {
 	int				pipe0[2];
 	t_input_data	data;
-	pid_t			pid[2];
 	t_data_object	object;
 	t_cmd			*cmd;
 	int				status;
@@ -30,29 +29,16 @@ int	main(int argc, char **argv, char **envp)
 	cmd = NULL;
 	cmd = get_args(cmd, data);
 	if (data.argc != 5)
-		err_handle();
+		exit(1);
 	if (pipe(pipe0) == -1)
-		err_handle();
-	pid[0] = fork();
-	if (pid[0] < 0)
-		return (err_fork());
-	if (pid[0] == 0)
-	{
-		cmd -> file = get_file(data.envp, data.argv[2]);
-		child1(object.input_file, pipe0, data, cmd);
-	}
-	pid[1] = fork();
-	if (pid[1] < 0)
-		return (err_fork());
-	if (pid[1] == 0)
-	{
-		cmd -> file = get_file(data.envp, data.argv[3]);
-		child2(object.output_file, pipe0, data, cmd);
-	}
+		exit(1);
+	cmd -> file = get_file(data.envp, data.argv[2]);
+	child1(object.input_file, pipe0, &data, cmd);
+	cmd -> file = get_file(data.envp, data.argv[3]);
+	child2(object.output_file, pipe0, &data, cmd);
 	close(pipe0[READ_END]);
 	close(pipe0[WRITE_END]);
- 	waitpid(pid[0], &status, 0); 
-	waitpid(pid[1], &status, 0);
+	waitpid(data.pid[1], &status, 0);
 	free_cmd(cmd[0].cmd);
 	free_cmd(cmd[1].cmd);
 	exit(WEXITSTATUS(status));

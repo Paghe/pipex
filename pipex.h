@@ -6,7 +6,7 @@
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 19:20:21 by apaghera          #+#    #+#             */
-/*   Updated: 2023/02/01 19:21:06 by apaghera         ###   ########.fr       */
+/*   Updated: 2023/02/02 19:50:03 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_input_data
 	int			argc;
 	char		**argv;
 	char		**envp;
+	pid_t		pid[2];
 }				t_input_data;
 
 typedef struct s_data_object
@@ -42,8 +43,8 @@ typedef struct s_cmd
 t_input_data	create_input(int argc, char **argv, char **envp);
 int				err_fork(void);
 int				err_handle(void);
-int				child1(int input, int pipe0[2], t_input_data data, t_cmd *cmd);
-int				child2(int output, int pipe0[2], t_input_data data, t_cmd *cmd);
+void			child1(int input, int pipe0[2], t_input_data *data, t_cmd *cmd);
+void			child2(int output, int pipe0[2], t_input_data *data, t_cmd *cmd);
 t_data_object	create_object(void);
 char			*get_path(char **envp);
 char			**get_dir(char *path, char split);
