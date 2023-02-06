@@ -6,8 +6,9 @@ SRC = main.c \
 		 error.c			\
 		 child.c			\
 		 path.c 			\
-		 parse.c			\
+		 init_args.c		\
 		 free.c 			\
+		 init_pipe.c		\
 
 OBJ = $(SRC:.c=.o)
 LIBFT = ./libft/libft.a

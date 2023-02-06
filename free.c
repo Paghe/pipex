@@ -6,7 +6,7 @@
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:47:22 by apaghera          #+#    #+#             */
-/*   Updated: 2023/02/01 16:51:13 by apaghera         ###   ########.fr       */
+/*   Updated: 2023/02/05 23:40:52 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,10 @@ void	free_cmd(char **cmd)
 		i++;
 	}
 	free(cmd);
+}
+
+void	free_cmds(char **cmd1, char **cmd2)
+{
+	free_cmd(cmd1);
+	free_cmd(cmd2);
 }
