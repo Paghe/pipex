@@ -6,7 +6,7 @@
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 14:46:14 by apaghera          #+#    #+#             */
-/*   Updated: 2023/02/05 18:31:36 by apaghera         ###   ########.fr       */
+/*   Updated: 2023/02/07 14:59:18 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_data_object	init_object(void)
 {
 	t_data_object	object;
 
-	object.input_file = 0;
-	object.output_file = 0;
+	object.i = 0;
+	object.o = 0;
 	return (object);
 }

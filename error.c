@@ -6,7 +6,7 @@
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 19:37:36 by apaghera          #+#    #+#             */
-/*   Updated: 2023/02/05 20:44:41 by apaghera         ###   ########.fr       */
+/*   Updated: 2023/02/09 21:55:00 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	err_handle(char *msg)
 {
-	perror(msg);
-	exit(EXIT_FAILURE);
+	ft_putstr_fd(msg, 2);
+	exit(1);
 }
 
 int	err_fork(void)
@@ -45,4 +45,12 @@ int	argv_error(char **argv)
 		j++;
 	}
 	return (0);
+}
+
+int	err_pipe(int *pipe0)
+{
+	err_handle("pipe error");
+	close(pipe0[0]);
+	close(pipe0[1]);
+	exit(1);
 }

@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 15:48:23 by apaghera          #+#    #+#             */
-/*   Updated: 2023/02/14 14:22:14 by apaghera         ###   ########.fr       */
+/*   Created: 2023/02/06 17:37:39 by apaghera          #+#    #+#             */
+/*   Updated: 2023/02/14 15:32:32 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
-char	*ft_strdup(const char *s1)
+char	*different_format(char *file, char *tmp, char *argv)
 {
-	char	*s2;
-	int		len;
-	int		i;
-
-	i = 0;
-	len = ft_strlen(s1);
-	if (!s1)
-		return (0);
-	s2 = malloc(sizeof (char) * len + 1);
-	if (!s2)
-		return (NULL);
-	while (s1[i] != '\0')
-	{
-		s2[i] = s1[i];
-		i++;
-	}
-	s2[i] = '\0';
-	return (s2);
+	file = ft_strjoin(tmp, ft_strrchr(argv, '/'));
+	return (file);
 }
