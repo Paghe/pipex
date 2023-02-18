@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_args.c                                        :+:      :+:    :+:   */
+/*   error_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 20:04:18 by apaghera          #+#    #+#             */
-/*   Updated: 2023/02/14 20:40:45 by apaghera         ###   ########.fr       */
+/*   Created: 2023/02/17 16:17:22 by apaghera          #+#    #+#             */
+/*   Updated: 2023/02/18 15:05:51 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
-void	init_args(t_cmd **cmd, t_input_data data)
+int	err_handle(char *msg)
 {
-	int				i;
-	int				j;
+	ft_putstr_fd(msg, 2);
+	exit(1);
+}
 
-	j = 0;
-	i = 1;
-	*cmd = (t_cmd *)malloc(sizeof(t_cmd) * data.argc - 3);
-	if (!*cmd)
-		exit(EXIT_FAILURE);
-	while (++i < data.argc)
-		(*cmd)[j++].cmd = ft_split(data.argv[i], ' ');
+int	error_msg(char *msg)
+{
+	write(2, msg, ft_strlen(msg));
+	return (1);
 }

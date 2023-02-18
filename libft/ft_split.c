@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
+/*   By: apaghera <apaghera@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:45:57 by apaghera          #+#    #+#             */
-/*   Updated: 2023/02/09 20:23:21 by apaghera         ###   ########.fr       */
+/*   Updated: 2022/11/03 13:09:56 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_count_word(const char *str, int c)
+static int	ft_count_word(const char *str, int c)
 {
 	size_t	count;
 

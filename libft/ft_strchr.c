@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
+/*   By: apaghera <apaghera@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:12:47 by apaghera          #+#    #+#             */
-/*   Updated: 2022/12/14 19:26:54 by apaghera         ###   ########.fr       */
+/*   Updated: 2022/11/03 13:11:54 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

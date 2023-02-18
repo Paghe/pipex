@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   free_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaghera <apaghera@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 15:14:07 by apaghera          #+#    #+#             */
-/*   Updated: 2022/11/03 13:24:58 by apaghera         ###   ########.fr       */
+/*   Created: 2023/02/15 15:42:29 by apaghera          #+#    #+#             */
+/*   Updated: 2023/02/18 15:05:56 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex_bonus.h"
 
-size_t	ft_strlen(const char *str)
+void	free_pointers(t_parse parse)
 {
 	int	i;
 
 	i = 0;
-	if (*str == 0)
-		return (0);
-	while (str[i] != '\0')
+	while (parse.dir[i])
+	{
+		free(parse.dir[i]);
 		i++;
-	return (i);
+	}
+	free(parse.dir);
 }

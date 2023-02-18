@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_input.c                                      :+:      :+:    :+:   */
+/*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/23 14:46:14 by apaghera          #+#    #+#             */
-/*   Updated: 2023/02/07 14:59:18 by apaghera         ###   ########.fr       */
+/*   Created: 2023/02/15 16:39:38 by apaghera          #+#    #+#             */
+/*   Updated: 2023/02/18 14:50:43 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-t_input_data	init_input(int argc, char **argv, char **envp)
+void	init_args(t_cmd **cmd, t_data data)
 {
-	t_input_data	data;
+	int				i;
+	int				j;
 
-	data.argc = argc;
-	if (data.argc != 5)
+	j = 0;
+	i = 1;
+	*cmd = (t_cmd *)malloc(sizeof(t_cmd) * data.argc - 3);
+	if (!*cmd)
 		exit(EXIT_FAILURE);
-	data.argv = argv;
-	if (!data.argv)
-		exit(EXIT_FAILURE);
-	argv_error(data.argv);
-	data.envp = envp;
-	if (!data.envp)
-		exit(EXIT_FAILURE);
-	return (data);
-}
-
-t_data_object	init_object(void)
-{
-	t_data_object	object;
-
-	object.i = 0;
-	object.o = 0;
-	return (object);
+	while (++i < data.argc)
+	{
+		(*cmd)[j].cmd = ft_split(data.argv[i], ' ');
+		(*cmd)[j].file.file = NULL;
+		j++;
+	}
 }

@@ -49,7 +49,7 @@ OBJS = $(SRCS:.c=.o)
 
 OBJSB = $(SRCSB:.c=.o)
 
-CC = cc
+CC = clang
 
 CC_FLAGS = -Wall -Wextra -Werror
 

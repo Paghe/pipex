@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
+/*   By: apaghera <apaghera@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 12:58:07 by apaghera          #+#    #+#             */
-/*   Updated: 2022/12/16 13:17:22 by apaghera         ###   ########.fr       */
+/*   Updated: 2022/11/03 13:53:57 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,5 @@ void				*ft_calloc(size_t count, size_t size);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
 void				ft_lstadd_front(t_list **lst, t_list *new);
-int					ft_count_word(const char *str, int c);
 
 #endif

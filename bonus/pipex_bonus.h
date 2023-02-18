@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:45:45 by apaghera          #+#    #+#             */
-/*   Updated: 2023/02/18 14:30:15 by apaghera         ###   ########.fr       */
+/*   Updated: 2023/02/18 15:08:50 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include <stdio.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include  <unistd.h>
 # include <fcntl.h>
 # include "errno.h"

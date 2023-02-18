@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apaghera <apaghera@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:44:07 by apaghera          #+#    #+#             */
-/*   Updated: 2023/02/18 15:24:12 by apaghera         ###   ########.fr       */
+/*   Updated: 2023/02/18 15:06:01 by apaghera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -31,10 +31,9 @@ int	main(int argc, char **argv, char **envp)
 	get_data_files(&data);
 	get_exec_file(parse, cmd, data);
 	while (++child < data.argc - 3)
-	{
 		execute_command(&data, cmd, child);
-	}
 	close_pipes(&data);
 	waitpid(data.pipes->pid, &data.status, 0);
+	system("leaks pipex");
 	exit(WEXITSTATUS(data.status));
 }
